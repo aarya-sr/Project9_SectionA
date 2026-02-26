@@ -187,10 +187,10 @@ streamlit run app.py
 
 This project demonstrates:
 
-✔ Full ML pipeline implementation
-✔ Model comparison & evaluation
-✔ Feature importance analysis
-✔ Deployment-ready model
-✔ Streamlit integration
+- Full ML pipeline implementation
+- Model comparison & evaluation
+- Feature importance analysis
+- Deployment-ready model
+- Streamlit integration
 
 The final model explains **74.2% of variance** in housing prices and provides reliable real-world predictions.
