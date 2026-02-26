@@ -1,6 +1,3 @@
-Here is a **clean, professional README.md** you can directly use for your GitHub repository.
-
-(I’ve structured it properly with title, description, setup, Streamlit section, results, etc., based on your report .)
 
 ---
 
