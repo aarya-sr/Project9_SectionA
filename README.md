@@ -119,12 +119,15 @@ These are used inside the Streamlit app for live predictions.
 
 # Streamlit Web App
 
+https://aicapstone-rxuaugnyjcmqymthqwv38a.streamlit.app/
+
 We developed an interactive Streamlit application that:
 
 * Accepts user inputs (bedrooms, sqft, location, etc.)
 * Applies preprocessing (encoding + scaling)
 * Loads trained model
 * Displays predicted house price instantly
+  
 
 ### Run the App Locally
 
