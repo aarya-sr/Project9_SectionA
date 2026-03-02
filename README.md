@@ -1,199 +1,199 @@
+Project 9: House Price Prediction
 
----
+From Data Cleaning to Deployment-Ready ML System
 
-# House Price Prediction
 
-**Traditional Machine Learning | King County, Washington**
+1. Project Overview -->
 
-## Project Overview
+This project focuses on building a complete machine learning pipeline to predict residential property prices in King County, Washington (2014).
 
-This project builds an end-to-end Machine Learning pipeline to predict residential property sale prices using historical housing data from **King County, Washington (2014)**.
 
-We implemented data preprocessing, feature engineering, model training, evaluation, and deployment using a Streamlit web application.
+The objective is to:
 
-**Dataset Size:** 4,600 records, 18 features
-**Target Variable:** Sale Price (USD)
-**Best Model:** Linear Regression (R² = 0.742)
+• Build regression models using classical ML techniques
 
----
+• Identify key drivers influencing house prices
 
-## Problem Statement
+•  model performance using evaluation metrics
 
-Accurately predicting house prices is a critical regression problem in real estate. Pricing depends on:
+• Deploy the best-performing model via a Streamlit application
 
-* Structural attributes (sqft, bedrooms, bathrooms)
-* Location (city, ZIP code)
-* Property features (view, waterfront, condition)
-* Temporal factors (year built)
 
-The goal is to build a model that estimates property prices reliably and explain the key drivers influencing valuations.
 
----
+2. Dataset Overview -->
 
-## Dataset Description
+Source: King County House Sales Dataset
 
-The dataset contains residential transactions from **May–July 2014** across:
+Records: 4,600
 
-* 44 Cities
-* 77 ZIP Codes
-* 4,600 properties
+Features: 18
 
-### Important Features
+Target Variable: Sale Price (USD)
 
-* `sqft_living`
-* `sqft_lot`
-* `bedrooms`
-* `bathrooms`
-* `view`
-* `waterfront`
-* `yr_built`
-* `city`
-* `statezip`
+Time Period: May–July 2014
 
----
+Coverage: 44 cities, 77 ZIP codes
 
-## Machine Learning Pipeline
 
-### Data Cleaning
 
-* Removed 49 zero-price records
-* Removed 2 invalid bedroom/bathroom entries
+3. System Architecture -->
 
-### Feature Engineering
+Raw Data
+   ↓
+Data Cleaning
+   ↓
+Feature Engineering
+   ↓
+Outlier Removal
+   ↓
+Train-Test Split
+   ↓
+Encoding + Scaling
+   ↓
+Model Training
+   ↓
+Model Evaluation
+   ↓
+Best Model Selection
+   ↓
+Model Serialization
+   ↓
+Streamlit Deployment
 
-* Extracted year_sold & month_sold
-* Dropped non-informative columns (street, country)
 
-### Outlier Removal
 
-* Applied 1st–99th percentile quantile trimming
+4. Technology Stack -->
 
-### Encoding
+• Component	Technology
 
-* One-Hot Encoding for city & statezip
+• Data Processing	Pandas, NumPy
 
-### Scaling
+• ML Models	Linear Regression, Random Forest, Decision Tree
 
-* StandardScaler applied to continuous area features
+• Evaluation	MAE, RMSE, R²
 
-### Train-Test Split
+• Visualization	Matplotlib
 
-* 80/20 split (random_state=42)
-* Prevented data leakage by fitting transformers only on training data
+• Model Saving Joblib
 
----
+• Deployment	Streamlit
 
-## Models Implemented
 
-| Model                 | R² Score  | MAE      | RMSE     |
-| --------------------- | --------- | -------- | -------- |
-| **Linear Regression** | **0.742** | $87,505  | $137,383 |
-| Random Forest         | 0.669     | $94,924  | $155,674 |
-| Decision Tree         | 0.367     | $146,122 | $215,091 |
 
-Linear Regression performed best and was selected for deployment.
+5. Methodology -->
 
----
+1. Data Cleaning ->
 
-## Key Insights
+• Removed 49 zero-price records
 
-*  `sqft_living` contributes over **50% of predictive power**
-*  Location (city & ZIP) is the second strongest driver
-* Waterfront & view significantly increase property value
-* Most relationships were largely linear → explaining Linear Regression’s strong performance
+• Removed 2 invalid bedroom/bathroom entries
 
----
+2. Feature Engineering ->
 
-## Model Deployment
+• Extracted year_sold, month_sold
 
-The best model and scaler were serialized using `joblib`:
+• Dropped non-informative features (street, country)
 
-```python
+3. Outlier Removal ->
+
+Applied 1st–99th percentile quantile trimming
+
+4. Encoding ->
+
+One-Hot Encoding on city and statezip
+
+5. Scaling ->
+
+StandardScaler applied to area-related features
+
+6. Train-Test Split ->
+
+• 80/20 split with random_state=42
+
+• Data leakage prevention ensured
+
+
+
+6. Models Implemented -->
+
+• Model	MAE	RMSE	R² Score
+
+• Linear Regression	-> $87,505	$137,383	0.742
+
+• Random Forest	-> $94,924	$155,674	0.669
+
+• Decision Tree	-> $146,122	$215,091	0.367
+
+
+
+7. Key Findings -->
+
+• sqft_living contributes ~51% of predictive importance
+
+• Location features significantly influence pricing
+
+• Linear Regression outperformed more complex models
+
+• Model explains 74.2% of variance in house prices
+
+
+
+8. Deployment -->
+
+The best-performing model (Linear Regression) was serialized:
+
 joblib.dump(lr, "house_price_model.pkl")
 joblib.dump(scaler, "scaler.pkl")
-```
 
-These are used inside the Streamlit app for live predictions.
+A Streamlit web application allows users to:
 
----
+• Input property details
 
-# Streamlit Web App
+• Generate price predictions
 
-https://aicapstone-rxuaugnyjcmqymthqwv38a.streamlit.app/
+• Interact with the trained model
 
-We developed an interactive Streamlit application that:
 
-* Accepts user inputs (bedrooms, sqft, location, etc.)
-* Applies preprocessing (encoding + scaling)
-* Loads trained model
-* Displays predicted house price instantly
-  
+9. Repository Structure -->
 
-### Run the App Locally
-
-```bash
-git clone <your-repo-link>
-cd house-price-prediction
-pip install -r requirements.txt
-streamlit run app.py
-```
-
----
-
-## Tech Stack
-
-* Python
-* Pandas
-* NumPy
-* Scikit-learn
-* Matplotlib
-* Joblib
-* Streamlit
-
----
-
-## Project Structure
-
-```
 ├── data.csv
 ├── House_price.ipynb
-├── app.py
-├── house_price_model.pkl
-├── scaler.pkl
+├── House_Price_Prediction_Report.pdf
 ├── requirements.txt
 └── README.md
-```
 
----
 
-## Future Improvements
+10. Future Improvements -->
 
-* Apply log transformation to price
-* Implement Ridge & Lasso Regression
-* Add k-fold cross-validation
-* Try XGBoost / LightGBM
-* Deploy as REST API (FastAPI/Flask)
-* Cloud deployment (AWS / Render / Streamlit Cloud)
+• Apply log transformation on target variable
 
----
+• Use Ridge / Lasso Regression
 
-## Contributors
+• Implement K-Fold Cross Validation
 
-1. Prachee Dhar, Streamlit & Report
-2. Aarya Srivastava,  Model Evaluation
-3. Suhaani Garg,  Preprocessing
-4. Manjeet,  Data Sourcing & Model Training
+• Evaluate XGBoost / LightGBM
 
----
+• Deploy as REST API
 
-## Conclusion
+
+11. Contributors -->
+
+Team contributions and individual roles are detailed in the project report.
+
+
+12. Conclusion -->
 
 This project demonstrates:
 
-- Full ML pipeline implementation
-- Model comparison & evaluation
-- Feature importance analysis
-- Deployment-ready model
-- Streamlit integration
+• End-to-end ML pipeline
 
-The final model explains **74.2% of variance** in housing prices and provides reliable real-world predictions.
+• Rigorous model comparison
+
+• Feature importance analysis
+
+• Deployment-ready architecture
+
+• Real-world regression problem solving
+
+
+The final model achieves R² = 0.742, making it a strong predictive system for residential property pricing.
